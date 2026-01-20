@@ -1,20 +1,22 @@
 import { Suspense } from "react";
 
-interface Student {
+interface StudentPageProps {
   params: {
     stdid: string;
   };
 }
-
-const StudentPage = async ({ params }: Student) => {
-  const {stdid} = params;
+const StudentPage = async ({ params }: StudentPageProps) => {
+  const { stdid } = await params;
   return (
     <div>
       <h1>Welcome to SAU</h1>
-      <h1>{stdid}</h1>
-      <Suspense fallback={<div>Loading...</div>}>
+      {/* Displaying the stdid from the params */}
+      <h1>Student ID: {stdid}</h1>
+      <Suspense fallback={<div>Loading student details...</div>}>
         <div>
-          <h1>{stdid}</h1>
+          {/* Displaying the stdid in the details section as well */}
+          <h2>Details for Student ID: {stdid}</h2>
+          {/* You would typically fetch and display student data here */}
         </div>
       </Suspense>
     </div>
